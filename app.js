@@ -15,12 +15,14 @@ const data = {
 
 const handleRequest = async (request) => {
   const url = new URL(request.url);
-  if (url.pathname === "/count") {
+  if (url.pathname === "/visits") {
     data.count++;
     return new Response(await renderFile("count.eta", data), responseDetails);
+  } else if (url.pathname === "/meaning") {
+    return new Response(await renderFile("meaning.eta", data), responseDetails);
   }
 
-  return new Response("Hello you!");
+  return new Response("Nothing here yet.");
 };
 
 serve(handleRequest, { port: 7777 });
